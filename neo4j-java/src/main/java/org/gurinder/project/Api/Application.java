@@ -6,14 +6,15 @@ import java.util.ArrayList;
 
 import org.gurinder.project.Entity.Profile;
 import org.gurinder.project.Services.ProfileService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 public class Application {
 
-    public static <t> ArrayList master(t T) {
-        return new ArrayList();
-    }
+    private static final Logger logger = LoggerFactory
+            .getLogger(Application.class);
 
     public static void main(String[] args) throws URISyntaxException {
         ProfileService profileService = new ProfileService("http://localhost:7474/db/data/");
@@ -27,7 +28,8 @@ public class Application {
         }*/
 
         List a = profileService.getBlocked("4");
-        System.out.println(a);
+        logger.info("output:", a);
+        System.out.print(a);
         //      List b = profileService.getBlockedBy("6");
 
     }
