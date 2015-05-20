@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+    <file url="file://$PROJECT_DIR$/src/main/java/org/gurinder/project/Dao/UserDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/gurinder/project/DaoImpl/UserDaoImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/gurinder/project/DaoImpl/UserDaoImplRest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/gurinder/project/Dbfactory/DatabaseNeo4j.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/gurinder/project/Entity/Blocked.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/gurinder/project/Entity/Favorite.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/gurinder/project/Entity/RelationshipTypes.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/gurinder/project/Entity/User.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/gurinder/project/Services/UserService.java" charset="UTF-8" />
+  </component>
+</project>
