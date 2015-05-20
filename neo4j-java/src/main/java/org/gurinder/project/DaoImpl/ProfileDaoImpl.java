@@ -4,11 +4,16 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import org.apache.commons.codec.binary.Base64;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.gurinder.project.Dao.ProfileDao;
 import org.gurinder.project.Entity.Profile;
 
 import javax.ws.rs.core.MediaType;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -32,27 +37,27 @@ public class ProfileDaoImpl implements ProfileDao {
 
     @Override
     public List<Profile> getBlocked(String profileId) {
-        findDetails("MATCH (me:User {profileid:" + profileId + "})-[b:BLOCKED]->(other:User) RETURN other");
-        return null;
+        List<Profile> profile = findDetails("MATCH (me:User {profileid:" + profileId + "})-[b:BLOCKED]->(other:User) RETURN other");
+        return profile;
     }
 
 
     @Override
     public List<Profile> getBlockedBy(String profileId) {
-        findDetails("MATCH (me:User)-[b:BLOCKED]->(other:User {profileid:" + profileId + "}) RETURN me");
-        return null;
+        List<Profile> profile = findDetails("MATCH (me:User)-[b:BLOCKED]->(other:User {profileid:" + profileId + "}) RETURN me");
+        return profile;
     }
 
     @Override
     public List<Profile> getFavorite(String profileId) {
-        findDetails("MATCH (me:User {profileid:" + profileId + "})-[b:FAVORITE]->(other:User) RETURN other");
-        return null;
+        List<Profile> profile = findDetails("MATCH (me:User {profileid:" + profileId + "})-[b:FAVORITE]->(other:User) RETURN other");
+        return profile;
     }
 
     @Override
     public List<Profile> getFavoriteBy(String profileId) {
-        findDetails("MATCH (me:User)-[b:FAVORITE]->(other:User {profileid:" + profileId + "}) RETURN me");
-        return null;
+        List<Profile> profile = findDetails("MATCH (me:User)-[b:FAVORITE]->(other:User {profileid:" + profileId + "}) RETURN me");
+        return profile;
     }
 
 
@@ -81,14 +86,28 @@ public class ProfileDaoImpl implements ProfileDao {
                 .type(MediaType.APPLICATION_JSON)
                 .entity(payload)
                 .post(ClientResponse.class);
-
+        String body = (String) response.getEntity(String.class);
         System.out.println(String.format(
                 "POST [%s] to [%s], status code [%d], returned data: "
                         + System.getProperty("line.separator") + "%s",
                 payload, txUri, response.getStatus(),
-                response.getEntity(String.class)));
+                body));
 
-        return null;
+
+        ObjectMapper mapper = new ObjectMapper();
+        List list1 = null;
+        try {
+            Map m = mapper.readValue(body, Map.class);
+            List list = (ArrayList) m.get("results");
+            Map m1 = (Map) list.get(0);
+            list1 = (List) m1.get("data");
+//            Map m2 = (Map) list1.get(0);
+//            list2 = (List) m2.get("row");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        response.close();
+        return list1;
     }
 
     private boolean sendTransactionalCypherQuery(String query) {

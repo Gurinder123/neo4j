@@ -26,8 +26,9 @@ public class Application {
             System.out.println("Error in User is creating");
         }*/
 
-        List a = profileService.getBlocked("2");
-        List b = profileService.getBlockedBy("6");
+        List a = profileService.getBlocked("4");
+        System.out.println(a);
+        //      List b = profileService.getBlockedBy("6");
 
     }
 
