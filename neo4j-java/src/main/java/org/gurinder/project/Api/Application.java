@@ -2,8 +2,6 @@ package org.gurinder.project.Api;
 
 
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-
 import org.gurinder.project.Entity.Profile;
 import org.gurinder.project.Services.ProfileService;
 import org.slf4j.Logger;

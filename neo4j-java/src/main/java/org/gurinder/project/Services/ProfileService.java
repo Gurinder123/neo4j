@@ -1,12 +1,8 @@
 package org.gurinder.project.Services;
 
 import org.gurinder.project.Dao.ProfileDao;
-import org.gurinder.project.Dao.UserDao;
 import org.gurinder.project.DaoImpl.ProfileDaoImpl;
-import org.gurinder.project.DaoImpl.UserDaoImpl;
 import org.gurinder.project.Entity.Profile;
-import org.gurinder.project.Entity.User;
-import org.neo4j.graphdb.Result;
 
 import java.util.List;
 
@@ -32,6 +28,14 @@ public class ProfileService {
 
     public List<Profile> getBlockedBy(String profileId) {
         return profieDaoImpl.getBlockedBy(profileId);
+    }
+
+    public List<Profile> getFavorite(String profileId) {
+        return profieDaoImpl.getFavorite(profileId);
+    }
+
+    public List<Profile> geFavoriteBy(String profileId) {
+        return profieDaoImpl.getFavoriteBy(profileId);
     }
 
 }
